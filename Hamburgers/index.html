@@ -6,38 +6,43 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./hamburger.css">
 </head>
 <body>
 
-<div>
-    <label for="size-select">Выберите размер:</label>
-    <select name="size" id="size-select">
-        <option value="small">Маленький</option>
-        <option value="large">Большой</option>
-    </select>
-</div>
+<main class="main">
+    <div class="container">
+        <label for="size-select">Выберите размер:</label>
+        <select name="size" id="size-select">
+            <option value="small">Маленький</option>
+            <option value="large">Большой</option>
+        </select>
+    </div>
 
-<div>
-    <label for="staffing-select">Выберите начинку:</label>
-    <select name="staffing" id="staffing-select">
-        <option value="cheese">Сыр</option>
-        <option value="salad">Салат</option>
-        <option value="potato">Картофель</option>
-    </select>
-</div>
+    <div class="container">
+        <label for="staffing-select">Выберите начинку:</label>
+        <select name="staffing" id="staffing-select">
+            <option value="cheese">Сыр</option>
+            <option value="salad">Салат</option>
+            <option value="potato">Картофель</option>
+        </select>
+    </div>
 
-<div>
-    <label for="topping-select-add">Добавьте топпинг:</label>
-    <select name="topping-add" id="topping-select-add">
-        <option value="spices">Приправы</option>
-        <option value="souse">Майонез</option>
-    </select>
-    <button id="topping-add-button">Добавить</button>
-</div>
+    <div class="container">
+        <label for="topping-select-add">Добавьте топпинг:</label>
+        <select name="topping-add" id="topping-select-add">
+            <option value="spices">Приправы</option>
+            <option value="souse">Майонез</option>
+        </select>
+        <button id="topping-add-button">Добавить</button>
+        <button id="topping-remove-button">Удалить</button>
+    </div>
 
-<div>
-    <button id="calculate">Рассчитать стоимость</button>
-</div>
+    <div class="container-info">
+
+    </div>
+</main>
+
 <script src="./hamburgers.js"></script>
 </body>
 </html>
