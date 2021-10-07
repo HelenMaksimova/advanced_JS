@@ -1,8 +1,5 @@
 'use strict'
 
-//Пока что без использования id, методов подгрузки с сервера, принадлежности пользователю и т.д., потому что не понятно,
-// какой будет функционал и какая планируется реализация
-
 class BasketItem {
     constructor({id_product, product_name = 'Product', price = 0, quantity = 1}) {
         this.id_product = id_product;
