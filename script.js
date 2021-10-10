@@ -3,9 +3,6 @@
 import GoodsList from "./GoodsList.js";
 import BasketList from "./BasketList.js";
 
-// из-за заглушек пока что всё делается через метод GET.
-// Функции для POST и DELETE добавлю, как только будет реальный API
-
 function makeGetRequest(url) {
     return new Promise((resolve, reject) => {
         let xhr = (window.XMLHttpRequest) ?
@@ -34,5 +31,10 @@ const API_URLS = {
 const goodsList = new GoodsList(makeGetRequest, BASE_API_URL + API_URLS.getGoods);
 const basket = new BasketList(makeGetRequest, BASE_API_URL + API_URLS.getBasket);
 
-basket.addBasketItemToServer(makeGetRequest, BASE_API_URL + API_URLS.addBasketItem);
-basket.removeBasketItemFromServer(makeGetRequest, BASE_API_URL + API_URLS.removeBasketItem);
+const $searchButton = document.querySelector('.header__button-search');
+const $searchInput = document.querySelector('.header__input-search');
+
+$searchButton.addEventListener('click',(event) => {
+    const value = $searchInput.value;
+    goodsList.filterGoods(value);
+});

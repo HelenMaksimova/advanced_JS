@@ -23,6 +23,7 @@ class GoodsItem {
 class GoodsList {
     constructor(makeGetRequest, url) {
         this.goods = [];
+        this.filteredGoods = []
         this.getGoods(makeGetRequest, url);
     }
 
@@ -30,6 +31,7 @@ class GoodsList {
         makeGetRequest(url).then(
             (response) => {
                 this.goods = response;
+                this.filteredGoods = response;
                 this.render()
             },
             (error) => {
@@ -38,16 +40,24 @@ class GoodsList {
         )
     }
 
+    filterGoods(value) {
+        const regexp =new RegExp(value, 'i');
+        this.filteredGoods = this.goods.filter(good => regexp.test(good.product_name));
+        this.render();
+    }
+
     getTotalPrice () {
         return this.goods.reduce((acc, item) => acc + (item.price || 0), 0);
     }
 
     render() {
-        const htmlInsert = this.goods.map(good => {
+        const htmlInsert = this.filteredGoods.map(good => {
             const goodItem = new GoodsItem(good);
             return goodItem.render();
         }).join('');
-        document.querySelector('.main__goods-list').insertAdjacentHTML('afterbegin', htmlInsert);
+        const content = document.querySelector('.main__goods-list');
+        content.innerHTML = '';
+        content.insertAdjacentHTML('afterbegin', htmlInsert);
     }
 }
 
