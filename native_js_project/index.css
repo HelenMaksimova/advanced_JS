@@ -7,10 +7,15 @@
 
 .header {
     display: grid;
-    grid-template-columns: 1fr 100px;
-    grid-template-areas: "header__empty header__button-cart";
+    grid-template-columns: 1fr 300px 100px 100px;
+    grid-template-areas: "header__empty header__input-search header__button-search header__button-cart";
     padding: 10px 20px;
     border: 1px solid midnightblue;
+}
+
+.header__input-search {
+    grid-area: header__input-search;
+    padding: 5px;
 }
 
 .header__button-cart {
@@ -21,6 +26,17 @@
     border-radius: 15px;
     color: midnightblue;
     font-weight: bold;
+}
+
+.header__button-search {
+    grid-area: header__button-search;
+    background: transparent;
+    padding: 5px;
+    border: 2px solid midnightblue;
+    border-radius: 15px;
+    color: midnightblue;
+    font-weight: bold;
+    margin: 0 10px;
 }
 
 .header__button-cart:hover {
