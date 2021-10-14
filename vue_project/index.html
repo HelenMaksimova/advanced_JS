@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 </head>
 <body>
-
+<div id="app">
+    <div class="header">
+        <div></div>
+        <div class="header-right-container">
+            <blue-search type="text" v-model="searchLine"></blue-search>
+            <blue-button text="Искать" @click="filterGoods"></blue-button>
+            <blue-button text="Корзина" @click="viewBasket"></blue-button>
+        </div>
+    </div>
+    <div class="main">
+        <goods-item v-for="item in filteredGoods" v-bind:item="item"></goods-item>
+    </div>
+    <basket-card v-bind:basket-goods="basketGoods" v-if="basketVision" v-on:view="viewBasket"></basket-card>
+</div>
+<script src="./app.js"></script>
 </body>
 </html>
