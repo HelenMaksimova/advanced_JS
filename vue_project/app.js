@@ -84,7 +84,6 @@ const app = new Vue({
         filteredGoods: GOODS,
         basketVision: false,
         searchLine: '',
-        good: {...GOODS[0], quantity: 2}
     },
     methods: {
         filterGoods: function () {
