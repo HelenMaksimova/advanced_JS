@@ -12,14 +12,16 @@
         <div></div>
         <div class="header-right-container">
             <blue-search type="text" v-model="searchLine"></blue-search>
-            <blue-button text="Искать" @click="filterGoods"></blue-button>
-            <blue-button text="Корзина" @click="viewBasket"></blue-button>
+            <blue-button @click="filterGoods">Искать</blue-button>
+            <blue-button @click="viewBasket">Корзина</blue-button>
         </div>
     </div>
     <div class="main">
-        <goods-item v-for="item in filteredGoods" v-bind:item="item"></goods-item>
+        <goods-item v-for="item in filteredGoods" :item="item"></goods-item>
     </div>
-    <basket-card v-bind:basket-goods="basketGoods" v-if="basketVision" v-on:view="viewBasket"></basket-card>
+    <basket-card v-if="basketVision" @view="viewBasket">
+        <basket-item v-for="item in basketGoods" :item="item"></basket-item>
+    </basket-card>
 </div>
 <script src="./app.js"></script>
 </body>

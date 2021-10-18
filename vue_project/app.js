@@ -24,18 +24,17 @@ Vue.component(
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.price }} $</p>
             </div>
-            <blue-button text="Добавить"></blue-button>
+            <blue-button>Добавить</blue-button>
             </div>`
     }
 );
 
 Vue.component('basket-card',
     {
-        props: ['basket-goods'],
         template:
             `<div class="basket-card">
-                <blue-button text="Закрыть" @click="$emit('view')"></blue-button>
-                <basket-item v-for="item in basketGoods" v-bind:item="item"></basket-item>
+                <blue-button @click="$emit('view')">Закрыть</blue-button>
+                <slot></slot>
             </div>`
     });
 
@@ -59,8 +58,9 @@ Vue.component('basket-item',
 Vue.component(
     'blue-button',
     {
-        props: ['text'],
-        template: `<button class="blue-button" @click="$emit('click', $event.target.click)">{{ text }}</button>`
+        template: `<button class="blue-button" @click="$emit('click', $event.target.click)">
+                      <slot></slot>
+                  </button>`
     }
 );
 
