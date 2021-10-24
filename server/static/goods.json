@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "product_name": "Shirt",
+    "price": 150
+  },
+  {
+    "id": 2,
+    "product_name": "Socks",
+    "price": 50
+  },
+  {
+    "id": 3,
+    "product_name": "Jacket",
+    "price": 350
+  },
+  {
+    "id": 4,
+    "product_name": "Shoes",
+    "price": 250
+  },
+  {
+    "id": 5,
+    "product_name": "T-Shirt",
+    "price": 200
+  },
+  {
+    "id": 6,
+    "product_name": "Coat",
+    "price": 500
+  },
+  {
+    "id": 7,
+    "product_name": "Scarf",
+    "price": 100
+  },
+  {
+    "id": 8,
+    "product_name": "Skirt",
+    "price": 300
+  },
+  {
+    "id": 9,
+    "product_name": "Pajamas",
+    "price": 180
+  },
+  {
+    "id": 10,
+    "product_name": "Boots",
+    "price": 450
+  },
+  {
+    "id": 11,
+    "product_name": "Suit",
+    "price": 600
+  },
+  {
+    "id": 12,
+    "product_name": "Jeans",
+    "price": 280
+  }
+]

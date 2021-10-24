@@ -17,10 +17,14 @@
         </div>
     </div>
     <div class="main">
-        <goods-item v-for="item in filteredGoods" :item="item"></goods-item>
+        <goods-item
+            v-for="item in filteredGoods"
+            :item="item"
+            @add="addBasketItem"
+        ></goods-item>
     </div>
     <basket-card v-if="basketVision" @view="viewBasket">
-        <basket-item v-for="item in basketGoods" :item="item"></basket-item>
+        <basket-item v-for="item in basketGoods" :item="item" @remove="deleteBasketItem"></basket-item>
     </basket-card>
 </div>
 <script src="./app.js"></script>

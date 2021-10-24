@@ -1,10 +1,10 @@
-const baseAPIUrl = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+const baseAPIUrl = 'http://localhost:8000';
 const APIUrls = {
-    getGoods: '/catalogData.json',
-    getBasket: '/getBasket.json',
-    addBasketItem: '/addToBasket.json',
-    removeBasketItem: '/deleteFromBasket.json'
+    getGoods: '/goods.json',
+    getBasket: '/basket-goods.json',
+    api: '/api'
 };
+
 
 Vue.component(
     'goods-item',
@@ -16,7 +16,7 @@ Vue.component(
                 <h3>{{ item.product_name }}</h3>
                 <p>{{ item.price }} $</p>
             </div>
-            <blue-button>Добавить</blue-button>
+            <blue-button @click="$emit('add', item)">Добавить</blue-button>
             </div>`
     }
 );
@@ -39,7 +39,7 @@ Vue.component('basket-item',
                 <p>{{ item.quantity }}</p>
                 <p>{{ item.price }} $</p>
                 <p>{{ totalPrice }} $</p> 
-                <blue-button>Удалить</blue-button>               
+                <blue-button @click="$emit('remove', item.id)">Удалить</blue-button>               
             </div>`,
         computed: {
             totalPrice: function () {
@@ -69,21 +69,38 @@ Vue.component(
     }
 );
 
+const service = function (url, method, data) {
+    const initData = {method: method};
+    if (data) {
+        initData.body = data;
+    }
+    if (method === 'PATCH' || method === 'DELETE') {
+        initData.headers = {'Content-type': 'application/json'}
+    }
+    return fetch(url, {...initData})
+        .then((response) => {
+            return response.json()
+        })
+}
+
 const app = new Vue({
     el: '#app',
     mounted: function () {
-        fetch(baseAPIUrl + APIUrls.getGoods)
-            .then((response) => {
-                return response.json()
-            })
+        service(baseAPIUrl + APIUrls.getGoods, 'GET')
             .then((data) => {
                 this.goods = data;
                 this.filteredGoods = data;
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        service(baseAPIUrl + APIUrls.getBasket, 'GET')
+            .then((data) => {
                 this.basketGoods = data;
             })
             .catch((error) => {
                 console.log(error)
-            })
+            });
     },
     data: {
         goods: [],
@@ -94,12 +111,24 @@ const app = new Vue({
     },
     methods: {
         filterGoods: function () {
-            this.filteredGoods = this.goods.filter(({ product_name }) => {
+            this.filteredGoods = this.goods.filter(({product_name}) => {
                 return new RegExp(this.searchLine, 'i').test(product_name);
             });
         },
         viewBasket: function () {
             this.basketVision = !this.basketVision
+        },
+        addBasketItem: function (item) {
+            service(baseAPIUrl + APIUrls.api, 'PATCH', JSON.stringify(item))
+                .then((response) => {
+                    this.basketGoods = response
+                });
+        },
+        deleteBasketItem: function (id) {
+            service(baseAPIUrl + APIUrls.api, 'DELETE', JSON.stringify({id: id}))
+                .then((response) => {
+                    this.basketGoods = response
+                });
         }
     }
 });
